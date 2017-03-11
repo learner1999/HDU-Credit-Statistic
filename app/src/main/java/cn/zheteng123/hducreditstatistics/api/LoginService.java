@@ -21,6 +21,7 @@ public interface LoginService {
     @FormUrlEncoded
     @POST(BASE_URL + "cas/login")
     Observable<ResponseBody> login(
+            @Field("lt") String lt,
             @Field("username") String username,
             @Field("password") String password,
             @Field("captcha") String captcha
