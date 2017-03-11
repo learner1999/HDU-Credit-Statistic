@@ -1,5 +1,7 @@
 package cn.zheteng123.hducreditstatistics.login;
 
+import android.graphics.Bitmap;
+
 import cn.zheteng123.hducreditstatistics.base.interfaces.BaseView;
 
 /**
@@ -9,4 +11,5 @@ import cn.zheteng123.hducreditstatistics.base.interfaces.BaseView;
 
 public interface LoginView extends BaseView {
 
+    void showCaptcha(Bitmap bitmap);
 }
