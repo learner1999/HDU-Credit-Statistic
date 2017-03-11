@@ -56,7 +56,7 @@ public class Networks {
             OkHttpClient.Builder builder = new OkHttpClient.Builder()
                     .cookieJar(new MyCookieJar())
                     .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-                    .addInterceptor(new HttpLoggingInterceptor());
+                    .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC));
             sOkHttpClient = builder.build();
         }
 
