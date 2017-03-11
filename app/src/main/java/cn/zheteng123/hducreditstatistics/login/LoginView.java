@@ -12,4 +12,12 @@ import cn.zheteng123.hducreditstatistics.base.interfaces.BaseView;
 public interface LoginView extends BaseView {
 
     void showCaptcha(Bitmap bitmap);
+
+    void showPasswordError();
+
+    void showCaptchaError();
+
+    void showUnKnowError();
+
+    void jumpToMain();
 }

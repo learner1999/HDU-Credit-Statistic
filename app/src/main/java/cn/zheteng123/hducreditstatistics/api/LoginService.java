@@ -19,7 +19,7 @@ public interface LoginService {
     // 密码错误：错误的用户名或密码
     // 验证码错误：输入的验证码不正确
     @FormUrlEncoded
-    @POST(BASE_URL + "cas/login")
+    @POST(BASE_URL + "cas/login?service=http://jxgl.hdu.edu.cn/default.aspx")
     Observable<ResponseBody> login(
             @Field("lt") String lt,
             @Field("username") String username,
@@ -27,7 +27,7 @@ public interface LoginService {
             @Field("captcha") String captcha
     );
 
-    @GET(BASE_URL + "cas/login")
+    @GET(BASE_URL + "cas/login?service=http://jxgl.hdu.edu.cn/default.aspx")
     Observable<ResponseBody> getToken();
 
     @GET(BASE_URL + "cas/Captcha.jpg")
