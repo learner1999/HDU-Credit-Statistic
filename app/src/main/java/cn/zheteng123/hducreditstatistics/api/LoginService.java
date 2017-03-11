@@ -12,23 +12,23 @@ import rx.Observable;
  */
 
 
-public interface LoginService extends BaseService {
+public interface LoginService {
 
     String BASE_URL = "http://cas.hdu.edu.cn/";
 
     // 密码错误：错误的用户名或密码
     // 验证码错误：输入的验证码不正确
     @FormUrlEncoded
-    @POST("cas/login")
+    @POST(BASE_URL + "cas/login")
     Observable<ResponseBody> login(
             @Field("username") String username,
             @Field("password") String password,
             @Field("captcha") String captcha
     );
 
-    @GET("cas/login")
+    @GET(BASE_URL + "cas/login")
     Observable<ResponseBody> getToken();
 
-    @GET("cas/Captcha.jpg")
+    @GET(BASE_URL + "cas/Captcha.jpg")
     Observable<ResponseBody> downloadCaptcha();
 }

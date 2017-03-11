@@ -18,6 +18,8 @@ public class Networks {
 
     private static final int DEFAULT_TIMEOUT = 5;
 
+    private static final String BASE_URL = "http://jxgl.hdu.edu.cn/";
+
     private static Networks sNetworks;
 
     private static OkHttpClient sOkHttpClient;
@@ -38,9 +40,9 @@ public class Networks {
         return sNetworks;
     }
 
-    private <T extends BaseService> T configRetrofit(Class<T> service) {
+    private <T> T configRetrofit(Class<T> service) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(T.BASE_URL)
+                .baseUrl(BASE_URL)
                 .client(configClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
