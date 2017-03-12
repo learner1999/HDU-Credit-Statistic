@@ -84,7 +84,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void jumpToMain() {
-        MainActivity.actionStart(this);
+        MainActivity.actionStart(this, mEtUsername.getText().toString());
         finish();
     }
 }

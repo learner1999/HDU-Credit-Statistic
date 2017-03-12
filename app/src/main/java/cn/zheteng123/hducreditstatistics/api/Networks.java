@@ -26,6 +26,15 @@ public class Networks {
 
     private static LoginService sLoginService;
 
+    private static CreditService sCreditService;
+
+    public CreditService getCreditService() {
+        if (sCreditService == null) {
+            sCreditService = configRetrofit(CreditService.class);
+        }
+        return sCreditService;
+    }
+
     public LoginService getLoginService() {
         if (sLoginService == null) {
             sLoginService = configRetrofit(LoginService.class);
@@ -56,7 +65,7 @@ public class Networks {
             OkHttpClient.Builder builder = new OkHttpClient.Builder()
                     .cookieJar(new MyCookieJar())
                     .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-                    .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
+                    .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                     .addInterceptor(new AuthJumpInterceptor());
             sOkHttpClient = builder.build();
         }
