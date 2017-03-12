@@ -7,7 +7,7 @@ import android.os.Bundle;
 import cn.zheteng123.hducreditstatistics.R;
 import cn.zheteng123.hducreditstatistics.base.BaseActivity;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
