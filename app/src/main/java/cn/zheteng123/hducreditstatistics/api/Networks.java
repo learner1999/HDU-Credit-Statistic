@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Networks {
 
-    private static final int DEFAULT_TIMEOUT = 5;
+    private static final int DEFAULT_TIMEOUT = 20;
 
     private static final String BASE_URL = "http://jxgl.hdu.edu.cn/";
 
@@ -27,6 +27,15 @@ public class Networks {
     private static LoginService sLoginService;
 
     private static CreditService sCreditService;
+
+    private static TrainingPlanService sTrainingPlanService;
+
+    public TrainingPlanService getTrainingPlanService() {
+        if (sTrainingPlanService == null) {
+            sTrainingPlanService = configRetrofit(TrainingPlanService.class);
+        }
+        return sTrainingPlanService;
+    }
 
     public CreditService getCreditService() {
         if (sCreditService == null) {
@@ -65,6 +74,7 @@ public class Networks {
             OkHttpClient.Builder builder = new OkHttpClient.Builder()
                     .cookieJar(new MyCookieJar())
                     .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                    .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                     .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                     .addInterceptor(new AuthJumpInterceptor());
             sOkHttpClient = builder.build();
