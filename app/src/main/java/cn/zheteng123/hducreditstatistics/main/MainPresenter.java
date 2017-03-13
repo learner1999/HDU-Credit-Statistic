@@ -270,7 +270,7 @@ public class MainPresenter implements BasePresenter {
                 }
             }
         }
-        mView.showCompareResult(mSubjectScoreList, mTrainingPlanSubjectList);
+        mView.showCompareResult(mSubjectScoreList, mTrainingPlanSubjectList, mRequiredCredit, mPracticeCredit, mOptionalCredit, mLimitedOptionalCredit, mArbitrarilyOptionalCredit);
     }
 
     /**

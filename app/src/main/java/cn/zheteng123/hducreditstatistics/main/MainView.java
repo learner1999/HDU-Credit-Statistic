@@ -13,5 +13,11 @@ import cn.zheteng123.hducreditstatistics.entity.TrainingPlanSubject;
 
 public interface MainView extends BaseView {
 
-    void showCompareResult(List<SubjectScore> subjectScoreList, List<TrainingPlanSubject> trainingPlanSubjectList);
+    void showCompareResult(List<SubjectScore> subjectScoreList,
+                           List<TrainingPlanSubject> trainingPlanSubjectList,
+                           double requiredCredit,
+                           double practiceCredit,
+                           double optionalCredit,
+                           double limitedOptionalCredit,
+                           double arbitrarilyOptionalCredit);
 }
