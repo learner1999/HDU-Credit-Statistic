@@ -20,4 +20,8 @@ public interface MainView extends BaseView {
                            double optionalCredit,
                            double limitedOptionalCredit,
                            double arbitrarilyOptionalCredit);
+
+    void showProgressDialog();
+
+    void changeDialogMessage(String message);
 }

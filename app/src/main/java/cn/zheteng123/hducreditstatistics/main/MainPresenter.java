@@ -67,6 +67,8 @@ public class MainPresenter implements BasePresenter {
      * @param xh 学号
      */
     public void getSubjectScore(final String xh) {
+        mView.showProgressDialog();
+
         final CreditService creditService = Networks.getInstance()
                 .getCreditService();
 
@@ -129,6 +131,7 @@ public class MainPresenter implements BasePresenter {
                         }
                         List<SubjectScore> subjectScoreList = parseSubjectScore(html);
                         mSubjectScoreList.addAll(subjectScoreList);
+                        mView.changeDialogMessage("已爬取 " + mSubjectScoreList.size() + " 门课的成绩……");
                     }
                 });
 
@@ -251,6 +254,7 @@ public class MainPresenter implements BasePresenter {
                             subject.credit = Double.parseDouble(tds.get(2).text());
                             subject.category = tds.get(4).text();
                             mTrainingPlanSubjectList.add(subject);
+                            mView.changeDialogMessage("已爬取 " + mTrainingPlanSubjectList.size() + " 门培养计划课程……");
                         }
 
                     }

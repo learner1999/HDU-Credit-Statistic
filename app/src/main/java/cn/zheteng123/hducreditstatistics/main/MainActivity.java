@@ -1,5 +1,6 @@
 package cn.zheteng123.hducreditstatistics.main;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public class MainActivity extends BaseActivity implements MainView {
 
     private MainPresenter mMainPresenter;
     private String mStrXh;
+    private ProgressDialog mProgressDialog;
 
     @BindView(R.id.tv_result)
     TextView mTvResult;
@@ -67,6 +69,8 @@ public class MainActivity extends BaseActivity implements MainView {
                                   double optionalCredit,
                                   double limitedOptionalCredit,
                                   double arbitrarilyOptionalCredit) {
+
+        mProgressDialog.dismiss(); // 隐藏进度条对话框
 
         double gainRequiredCredit = 0;
         double gainPracticeCredit = 0;
@@ -115,5 +119,19 @@ public class MainActivity extends BaseActivity implements MainView {
                 "，要求总分 " + String.format(Locale.CHINA, "%.1f", arbitrarilyOptionalCredit) + "\n";
 
         mTvResult.setText(strResult + strNotMatchSubject + strNotGainRequired);
+    }
+
+    @Override
+    public void showProgressDialog() {
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setTitle("爬取数据中，请耐心等待……");
+        mProgressDialog.setMessage("开始爬取数据……");
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.show();
+    }
+
+    @Override
+    public void changeDialogMessage(String message) {
+        mProgressDialog.setMessage(message);
     }
 }
