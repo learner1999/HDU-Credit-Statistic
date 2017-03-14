@@ -6,7 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.zheteng123.hducreditstatistics.login.LoginActivity">
+    tools:context="cn.zheteng123.hducreditstatistics.login.LoginActivity"
+    android:background="@color/colorPrimary">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -14,7 +15,8 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:visibility="invisible"/>
 
     <LinearLayout
         android:layout_width="match_parent"
