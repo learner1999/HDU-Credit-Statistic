@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HduCreditStatistics</string>
+    <string name="app_name">杭电学分统计</string>
     <string name="student_number">学号</string>
     <string name="password">密码</string>
     <string name="captcha">验证码</string>
