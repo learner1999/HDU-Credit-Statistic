@@ -205,9 +205,13 @@ public class MainPresenter implements BasePresenter {
                         int pageNum = doc.select("#DBGrid tr").last().select("td a").size() + 1;
                         Log.d(TAG, "call: pageNum=" + pageNum);
 
+                        // 这里为了减少一次页面爬取，同时进行培养计划第一页课程爬取及页数爬取
+                        List<TrainingPlanSubject> trainingPlanSubjectList = parseTrainingPlanSubject(html);
+                        mTrainingPlanSubjectList.addAll(trainingPlanSubjectList);
+
                         TrainingPlanService trainingPlanService = Networks.getInstance().getTrainingPlanService();
                         List<Observable<ResponseBody>> observableList = new ArrayList<>();
-                        for(int i = 0; i < pageNum; i++) {
+                        for(int i = 1; i < pageNum; i++) {
                             // TODO: 2017/3/13 这个地方可能埋了一个坑，没有考虑页数超过 10 页的情况
                             Observable<ResponseBody> observable =  trainingPlanService.getByPage(xh, "DBGrid$ctl24$ctl0" + i, __VIEWSTATE, __EVENTVALIDATION, xymc, zymc, nj, "%C8%AB%B2%BF", "%C8%AB%B2%BF");
                             observableList.add(observable);
@@ -259,6 +263,29 @@ public class MainPresenter implements BasePresenter {
 
                     }
                 });
+    }
+
+    /**
+     * 解析培养计划页面中的课程信息
+     * @param html 页面源码
+     * @return 培养计划课程列表
+     */
+    private List<TrainingPlanSubject> parseTrainingPlanSubject(String html) {
+        Document doc = Jsoup.parse(html);
+        Elements trs = doc.select("#DBGrid tr");
+
+        List<TrainingPlanSubject> trainingPlanSubjectList = new ArrayList<>();
+        for(int i = 1, len = trs.size(); i < len - 1; i++) {
+            TrainingPlanSubject subject = new TrainingPlanSubject();
+            Element tr = trs.get(i);
+            Elements tds = tr.select("td");
+            subject.code = tds.get(0).text();
+            subject.name = tds.get(1).text();
+            subject.credit = Double.parseDouble(tds.get(2).text());
+            subject.category = tds.get(4).text();
+            trainingPlanSubjectList.add(subject);
+        }
+        return trainingPlanSubjectList;
     }
 
     /**
